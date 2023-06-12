@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+a{
+  text-decoration: none;
+  color: #3D714E;
+}
+.cabecalho{
+    height: 65px;
+    background-color: #EFEEEB;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    font-weight: 200;
+    font-size: 25px;
+    align-items: center;
+}
+.conta{
+    width:12px;
+}
+.categorias{
+    background-color: #383A36;
+    color: #EFEEEB;
+    display: flex;
+    gap: 10px;
+    font-weight: 100;
+    font-size: 18px;
+    padding: 8px;
+}
+.imagembanner{
+    width: 100%;
+}
+.secao{
+    background-color: #EFEEEB;
+    display: flex;
+}
+.cada_ajuda{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+    margin-right: 60px;
+    width: 350px;
+}
+.cadaajudatitulo{
+    font-size: 30px;
+    margin-bottom: 8px;
+    color: #383A36;
+}
+.cadaajudatexto{
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #383A36;
+}
+.doar{
+    background-color: #383A36;
+    width: 100%;
+    color: #EFEEEB;
+    padding: 7px;
+    font-weight: 700;
+    font-size: 18px;
+}
+.cada_ajuda2{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 150px;
+    width: 350px;
+    color: #3D714E;
+}
+.impacto{
+    margin-bottom: 38px;
+    font-size: 15px;
+}
+.doados{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+.seta{
+    width: 32px;
+    align-items: center;
+}
+.textoeducacao {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .educacao {
+    font-size: 70px;
+    font-weight: 100;
+    margin-bottom: 10px;
+  }
+  .lado{
+    display: flex;
+    flex-direction: column;
+    width: 460px;
+  }
+  .secao2 {
+    margin-top: 60px;
+    padding-left: 140px;
+    padding-right: 140px;
+    display: flex;
+  }
+  
+  .secao2 img {
+    margin-left: 80px;
+    margin-right: 30px;
+    width: 345px;
+  }
+  .secao3 {
+    margin-top: 60px;
+    padding-left: 160px;
+    padding-right: 140px;
+    display: flex;
+  }
+  .secao3 img {
+    margin-left: 80px;
+    margin-right: 30px;
+    width: 345px;
+    margin-bottom: 90px;
+  }
+  .secao4{
+    background-color: #EFEEEB;
+    padding: 55px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .secao4 img{
+    width: 375px;
+    margin-left: 160px;
+    margin-right: 40px;
+  }
+  .textovideo{
+    font-size: 37px;
+    font-weight: 100;
+    margin-left: 40px;
+  }
+  .secao_verde{
+    background-color: #3D714E;
+    color: #EFEEEB;
+    padding-left: 62px;
+    padding-right: 62px;
+  }
+  .logo1{
+    font-size: 27px;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 45px;
+    padding-bottom: 18px;
+  }
+  .facil{
+    font-size: 42px;
+    font-weight: 900;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+  .comentarios{
+    display: flex;
+  }
+  .comentarios img{
+    width: 215px;
+    border-radius: 10px;
+  }
+  .comentario_imagem p{
+    background-color: #EFEEEB;
+    color: black;
+    width: 175px;
+    margin: 0;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .so_comentario{
+    background-color: #EFEEEB;
+    color: black;
+    width: 175px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .so_comentario1{
+    background-color: #EFEEEB;
+    color: black;
+    width: 175px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+  }

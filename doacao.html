@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doações</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    .modal-mask {
+      position: fixed;
+      z-index: 9998;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: table;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cabecalho">
+    <div class="logo">
+        <a href="index.html">FUNDAÇÃO ANJO MIGUEL</a>
+    </div>
+    <div class="conta">
+        <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.5 1C11.0736 1 1 11.0736 1 23.5C1 35.9263 11.0736 46 23.5 46C35.9263 46 46 35.9263 46 23.5C46 11.0736 35.9263 1 23.5 1Z" stroke="#383A36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.10974 37.7778C6.10974 37.7778 11.125 31.375 23.5 31.375C35.875 31.375 40.8905 37.7778 40.8905 37.7778" stroke="#383A36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23.5 23.5C27.228 23.5 30.25 20.478 30.25 16.75C30.25 13.0221 27.228 10 23.5 10C19.772 10 16.75 13.0221 16.75 16.75C16.75 20.478 19.772 23.5 23.5 23.5Z" stroke="#383A36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                
+    </div>
+</div>
+<div class="categorias">
+    <p>SOBRE NÓS</p>
+    <p>CONTATO</p>
+    <a href="doacao.html">DOAR</a>
+</div>
+  <div class="container" id="crudApp">
+    <br />
+    <h3 align="center">
+      <strong>Doações</strong>
+    </h3>
+    <br />
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="panel-title">Lista de doações</h3>
+          </div>
+          <div class="col-md-6" align="right">
+            <input type="button" class="btn btn-success btn-xs" @click="openModel" value="Realizar doação" />
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Valor doado</th>
+                <th>Mensagem de esperança</th>
+            </tr>
+            <tr v-for="row in allData">
+                <td>{{ row.nome }}</td>
+                <td>{{ row.doacao }}</td>
+                <td>{{ row.mensagem }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div v-if="myModel">
+      <transition name="model">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" @click="myModel=false">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title">{{ dynamicTitle }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" v-model="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label>Valor</label>
+                        <input type="text" class="form-control" v-model="doacao" />
+                    </div>
+                    <div class="form-group">
+                        <label>Mensagem</label>
+                        <input type="text" class="form-control" v-model="mensagem" />
+                    </div>
+                    
+                </div>
+                  <br />
+                  <div align="center">
+                    <input type="hidden" v-model="hiddenId" />
+                    <input type="button" class="btn btn-success btn-xs" v-model="actionButton" @click="submitData" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+    </div>
+  </div>
+  <footer>
+    <div class="rodape">
+      <h3>FUNDAÇÃO ANJO MIGUEL 2023</h3>
+  </div>
+  </footer>
+</body>
+
+</html>
+
+<script>
+  var application = new Vue({
+    el: "#crudApp",
+    data: {
+      allData: "",
+      myModel: false,
+      actionButton: "Enviar",
+    },
+    methods: {
+      fetchAllData: function () {
+        axios
+          .post("cadastro.php", {
+            action: "fetchall",
+          })
+          .then(function (response) {
+            application.allData = response.data;
+          });
+      },
+      openModel: function () {
+        application.nome = "";
+        application.doacao = "";
+        application.mensagem = "";
+        application.actionButton = "Enviar";
+        application.dynamicTitle = "Faça uma doação";
+        application.myModel = true;
+      },
+      submitData: function () {
+        if (application.nome != "" && application.doacao != "" && application.mensagem != "") {
+          if (application.actionButton == "Enviar") {
+            axios
+              .post("cadastro.php", {
+                action: "Enviar",
+                nome: application.nome,
+                doacao: application.doacao,
+                mensagem: application.mensagem,
+              })
+              .then(function (response) {
+                application.myModel = false;
+                application.fetchAllData();
+                application.nome = "";
+                application.doacao = "";
+                application.mensagem = "";
+                alert(response.data.message);
+              });
+          }
+        } else {
+          alert("Precisamos de todos os dados completos por favor!");
+        }
+      },
+    },
+    created: function () {
+      this.fetchAllData();
+    },
+  });
+</script>
